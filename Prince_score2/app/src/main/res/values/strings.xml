@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Prince_score</string>
+    <string name="score_tracker">Score tracker</string>
+    <string name="team_1">Team 1</string>
+</resources>
