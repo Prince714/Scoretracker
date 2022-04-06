@@ -1,10 +1,13 @@
 package com.example.prince_score;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.SwitchCompat;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -12,7 +15,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-
+     SwitchCompat switchCompat;
 
     TextView t1_view, t2_view;
     Button t1_inc,t1_dec,t2_inc,t2_dec;
@@ -26,8 +29,15 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+      if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+          setTheme(R.style.Theme_Dark);
+      } else{
+          setTheme(R.style.Theme_Light);
+      }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        switchCompat = findViewById(R.id.bt_swi);
 
         t1_view= findViewById(R.id.t1);
         t2_view =findViewById(R.id.t2);
@@ -38,7 +48,16 @@ public class MainActivity extends AppCompatActivity {
 
         radioGroup = findViewById(R.id.radio_grp);
 
-
+       switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+           @Override
+           public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+            if (isChecked){
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            }
+           }
+       });
 
 
 
